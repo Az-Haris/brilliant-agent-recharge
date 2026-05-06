@@ -34,7 +34,9 @@ export default function RechargeForm() {
       >
         {/* Title */}
         <div className="text-center">
-          <h1 className="text-xl sm:text-2xl font-bold">Quick Recharge</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-[#FA7066]">
+            Quick Recharge
+          </h1>
           <p className="text-sm text-gray-500">Top-up any number in seconds</p>
         </div>
 

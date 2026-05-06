@@ -48,21 +48,21 @@ export default function RechargeHistory() {
       <div className="overflow-hidden rounded-xl border border-[#FA7066]/50 bg-white">
         <table className="w-full text-sm">
           <thead className="bg-[#1A3955] text-white">
-            <tr className="text-left">
+            <tr className="text-center">
               <th className="px-4 py-3 font-semibold">Number</th>
-              <th className="px-4 py-3 font-semibold">Amount</th>
-              <th className="px-4 py-3 font-semibold text-right">Status</th>
+              <th className="px-2 py-3 font-semibold">Amount</th>
+              <th className="px-4 py-3 font-semibold">Status</th>
             </tr>
           </thead>
 
           <tbody>
             {ROWS.map((r, i) => (
-              <tr key={i} className="border-t border-[#FA7066]/50">
+              <tr key={i} className="text-center border-t border-[#FA7066]/50">
                 <td className="px-4 py-3 font-mono">{r.number}</td>
 
-                <td className="px-4 py-3 font-semibold">৳{r.amount}</td>
+                <td className="px-2 py-3 font-semibold">৳{r.amount}</td>
 
-                <td className="px-4 py-3 text-right">
+                <td className="px-4 py-3">
                   <StatusBadge status={r.status} />
                 </td>
               </tr>
