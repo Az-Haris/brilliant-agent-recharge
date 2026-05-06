@@ -1,0 +1,75 @@
+"use client";
+
+import { CheckCircle2, Clock } from "lucide-react";
+
+type Status = "Pending" | "Success";
+type Row = { number: string; amount: number; status: Status };
+
+const ROWS: Row[] = [
+  { number: "017******17", amount: 100, status: "Pending" },
+  { number: "017******08", amount: 50, status: "Pending" },
+  { number: "017******80", amount: 20, status: "Success" },
+  { number: "017******08", amount: 20, status: "Success" },
+  { number: "017******02", amount: 34, status: "Success" },
+];
+
+function StatusBadge({ status }: { status: Status }) {
+  if (status === "Success") {
+    return (
+      <span className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-full bg-green-100 text-green-700 border border-green-200">
+        <CheckCircle2 className="w-3 h-3" />
+        Success
+      </span>
+    );
+  }
+
+  return (
+    <span className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-full bg-yellow-100 text-yellow-700 border border-yellow-200">
+      <Clock className="w-3 h-3" />
+      Pending
+    </span>
+  );
+}
+
+export default function RechargeHistory() {
+  return (
+    <section className="w-full">
+      {/* Title */}
+      <div className="text-center mb-6">
+        <h2 className="text-2xl sm:text-3xl text-[#FA7066] font-bold">
+          Latest Recharge History
+        </h2>
+        <p className="text-sm text-gray-500 mt-1">
+          Recent top-ups processed by our agents
+        </p>
+      </div>
+
+      {/* Desktop Table */}
+      <div className="overflow-hidden rounded-xl border border-[#FA7066]/50 bg-white">
+        <table className="w-full text-sm">
+          <thead className="bg-[#1A3955] text-white">
+            <tr className="text-left">
+              <th className="px-4 py-3 font-semibold">Number</th>
+              <th className="px-4 py-3 font-semibold">Amount</th>
+              <th className="px-4 py-3 font-semibold text-right">Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {ROWS.map((r, i) => (
+              <tr key={i} className="border-t border-[#FA7066]/50">
+                <td className="px-4 py-3 font-mono">{r.number}</td>
+
+                <td className="px-4 py-3 font-semibold">৳{r.amount}</td>
+
+                <td className="px-4 py-3 text-right">
+                  <StatusBadge status={r.status} />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  );
+}
