@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const HeroCarousel = () => {
   return (
-    <div className="relative w-full aspect-21/6 rounded-xl overflow-hidden mt-4">
+    <div className="relative w-full aspect-21/7 rounded-xl overflow-hidden">
       <Image
         src="/Slider_1.jpg"
         alt="Hero Banner"
