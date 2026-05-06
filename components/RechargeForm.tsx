@@ -27,10 +27,10 @@ export default function RechargeForm() {
   };
 
   return (
-    <section className="relative">
+    <section className="relative w-full px-4 mx-auto">
       <form
         onSubmit={onSubmit}
-        className="bg-white rounded-xl p-5 sm:p-7 border border-[#FA7066]/50 space-y-5"
+        className="bg-white rounded-xl p-5 border border-[#FA7066]/50 space-y-5"
       >
         {/* Title */}
         <div className="text-center">

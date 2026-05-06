@@ -33,7 +33,7 @@ function StatusBadge({ status }: { status: Status }) {
 
 export default function RechargeHistory() {
   return (
-    <section className="w-full">
+    <section className="w-full px-4 mx-auto relative">
       {/* Title */}
       <div className="text-center mb-6">
         <h2 className="text-2xl sm:text-3xl text-[#FA7066] font-bold">

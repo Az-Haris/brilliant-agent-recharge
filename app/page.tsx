@@ -5,8 +5,53 @@ import RechargeHistory from "@/components/RechargeHistory";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-xl flex-col gap-6 items-center justify-between px-4 dark:bg-black sm:items-start">
+    <div className="min-h-screen w-full relative flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: `
+        linear-gradient(to right, #e7e5e4 1px, transparent 1px),
+        linear-gradient(to bottom, #e7e5e4 1px, transparent 1px)
+      `,
+          backgroundSize: "20px 20px",
+          backgroundPosition: "0 0, 0 0",
+          maskImage: `
+        repeating-linear-gradient(
+          to right,
+          black 0px,
+          black 3px,
+          transparent 3px,
+          transparent 8px
+        ),
+        repeating-linear-gradient(
+          to bottom,
+          black 0px,
+          black 3px,
+          transparent 3px,
+          transparent 8px
+        )
+      `,
+          WebkitMaskImage: `
+        repeating-linear-gradient(
+          to right,
+          black 0px,
+          black 3px,
+          transparent 3px,
+          transparent 8px
+        ),
+        repeating-linear-gradient(
+          to bottom,
+          black 0px,
+          black 3px,
+          transparent 3px,
+          transparent 8px
+        )
+      `,
+          maskComposite: "intersect",
+          WebkitMaskComposite: "source-in",
+        }}
+      />
+      <main className="flex flex-1 w-full max-w-xl flex-col gap-6 items-center justify-between dark:bg-black sm:items-start">
         <HeroCarousel />
         <RechargeForm />
         <RechargeHistory />
