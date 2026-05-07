@@ -5,7 +5,7 @@ import RechargeHistory from "@/components/RechargeHistory";
 
 export default function Home() {
   return (
-    <div className="min-h-screen w-full relative flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+    <div className="min-h-screen w-full relative flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans">
       <div
         className="absolute inset-0 z-0"
         style={{
@@ -51,7 +51,7 @@ export default function Home() {
           WebkitMaskComposite: "source-in",
         }}
       />
-      <main className="flex flex-1 w-full max-w-xl flex-col gap-6 items-center justify-between dark:bg-black sm:items-start">
+      <main className="flex flex-1 w-full max-w-xl flex-col gap-6 items-center justify-between sm:items-start">
         <HeroCarousel />
         <RechargeForm />
         <RechargeHistory />
