@@ -14,6 +14,7 @@ export default function RechargeForm() {
   const [showInfo, setShowInfo] = useState(false);
   const [number, setNumber] = useState("");
   const [last4Digit, setLast4Digit] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const copyNumber = async () => {
     await navigator.clipboard.writeText(SEND_NUMBER);
@@ -26,6 +27,7 @@ export default function RechargeForm() {
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
 
     const message = `
 *Brilliant Recharge Request*
@@ -46,6 +48,7 @@ export default function RechargeForm() {
       body: JSON.stringify({ number, amount, method, last4Digit }),
     });
 
+    setLoading(false);
     // Reset form
     setNumber("");
     setAmount("");
@@ -216,7 +219,7 @@ export default function RechargeForm() {
             type="submit"
             className="w-full h-11 rounded-xl bg-[#1A3955] text-white font-semibold active:scale-[0.99] transition cursor-pointer"
           >
-            Recharge Now
+            {loading ? "Processing..." : "Recharge Now"}
           </button>
         </form>
       </section>
