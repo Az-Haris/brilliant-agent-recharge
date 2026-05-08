@@ -24,10 +24,14 @@ export default function RechargeForm() {
     }, 1500);
   };
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const whatsappNumber = WHATSAPP_NUMBER;
+    await fetch("/api/recharge", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ number, amount, method, last4Digit }),
+    });
 
     const message = `
 *Brilliant Recharge Request*
@@ -40,7 +44,7 @@ export default function RechargeForm() {
 
     const encodedMessage = encodeURIComponent(message);
 
-    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
 
     window.open(whatsappURL, "_blank");
   };
@@ -96,7 +100,7 @@ export default function RechargeForm() {
             </div>
 
             <input
-              type="number"
+              type="tel"
               min={20}
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
