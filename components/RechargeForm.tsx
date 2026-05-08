@@ -135,7 +135,7 @@ export default function RechargeForm() {
               <input
                 readOnly
                 value={SEND_NUMBER}
-                className="flex-1 h-11 rounded-xl border border-gray-300 px-3 font-mono text-sm bg-gray-50"
+                className="flex-1 h-11 rounded-xl border border-gray-300 px-3 text-sm bg-gray-50"
               />
 
               <button
@@ -215,7 +215,7 @@ export default function RechargeForm() {
               Open your mobile banking app and send money to:
             </p>
 
-            <div className="mt-3 bg-gray-100 rounded-xl p-3 text-center font-mono text-lg font-bold">
+            <div className="mt-3 bg-gray-100 rounded-xl p-3 text-center text-lg font-bold">
               {SEND_NUMBER}
             </div>
 
