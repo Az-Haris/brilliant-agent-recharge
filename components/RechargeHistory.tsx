@@ -28,6 +28,26 @@ function StatusBadge({ status }: { status: Status }) {
   );
 }
 
+function SkeletonRows() {
+  return (
+    <>
+      {Array.from({ length: 10 }).map((_, i) => (
+        <tr key={i} className="text-center border-t border-[#FA7066]/50">
+          <td className="px-4 py-3">
+            <div className="h-4 w-28 bg-gray-200 rounded-full animate-pulse mx-auto" />
+          </td>
+          <td className="px-2 py-3">
+            <div className="h-4 w-12 bg-gray-200 rounded-full animate-pulse mx-auto" />
+          </td>
+          <td className="px-4 py-3 flex justify-center">
+            <div className="h-6 w-20 bg-gray-200 rounded-full animate-pulse" />
+          </td>
+        </tr>
+      ))}
+    </>
+  );
+}
+
 export default function RechargeHistory() {
   const [rows, setRows] = useState<Row[]>([]);
   const [loading, setLoading] = useState(true);
@@ -37,7 +57,6 @@ export default function RechargeHistory() {
       .then((r) => r.json())
       .then((data) => {
         setRows(data.records ?? []);
-        console.log(data.records);
       })
       .finally(() => setLoading(false));
   }, []);
@@ -64,11 +83,7 @@ export default function RechargeHistory() {
           </thead>
           <tbody>
             {loading ? (
-              <tr>
-                <td colSpan={3} className="py-8 text-center text-gray-400">
-                  Loading...
-                </td>
-              </tr>
+              <SkeletonRows />
             ) : rows.length === 0 ? (
               <tr>
                 <td colSpan={3} className="py-8 text-center text-gray-400">
