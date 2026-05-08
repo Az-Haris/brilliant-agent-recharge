@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 const SEND_NUMBER = "01784410162";
+const WHATSAPP_NUMBER = "01784410162";
 const QUICK_AMOUNTS = [20, 50, 100, 200, 500];
 
 export default function RechargeForm() {
@@ -11,6 +12,8 @@ export default function RechargeForm() {
   const [amount, setAmount] = useState("");
   const [method, setMethod] = useState("");
   const [showInfo, setShowInfo] = useState(false);
+  const [number, setNumber] = useState("");
+  const [last4Digit, setLast4Digit] = useState("");
 
   const copyNumber = async () => {
     await navigator.clipboard.writeText(SEND_NUMBER);
@@ -23,7 +26,23 @@ export default function RechargeForm() {
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Recharge submitted");
+
+    const whatsappNumber = WHATSAPP_NUMBER;
+
+    const message = `
+*Brilliant Recharge Request*
+
+📱 *Number:* ${number}
+💰 *Amount:* ৳${amount}
+💳 *Method:* ${method}
+🔢 *Last 4 Digit:* ${last4Digit}
+`;
+
+    const encodedMessage = encodeURIComponent(message);
+
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+    window.open(whatsappURL, "_blank");
   };
 
   return (
@@ -57,6 +76,8 @@ export default function RechargeForm() {
 
             <input
               type="tel"
+              value={number}
+              onChange={(e) => setNumber(e.target.value)}
               pattern="[0-9]{11}"
               placeholder="09XXX / 01XXX"
               required
@@ -91,7 +112,7 @@ export default function RechargeForm() {
                   key={a}
                   type="button"
                   onClick={() => setAmount(String(a))}
-                  className={`min-w-fit px-3 py-1.5 rounded-full text-xs border transition active:scale-95
+                  className={`min-w-fit px-3 py-1.5 rounded-full text-xs border transition active:scale-95 cursor-pointer
                     ${
                       amount === String(a)
                         ? "bg-[#FA7066] text-white border-[#FA7066]"
@@ -114,7 +135,7 @@ export default function RechargeForm() {
               <button
                 type="button"
                 onClick={() => setShowInfo(true)}
-                className="text-xs text-[#FA7066] font-medium"
+                className="text-xs text-[#FA7066] font-medium cursor-pointer"
               >
                 How?
               </button>
@@ -130,7 +151,7 @@ export default function RechargeForm() {
               <button
                 type="button"
                 onClick={copyNumber}
-                className={`px-4 rounded-xl text-sm font-medium transition
+                className={`px-4 rounded-xl text-sm font-medium transition cursor-pointer
                   ${
                     copied
                       ? "bg-green-500 text-white"
@@ -171,6 +192,8 @@ export default function RechargeForm() {
 
               <input
                 type="tel"
+                value={last4Digit}
+                onChange={(e) => setLast4Digit(e.target.value)}
                 pattern="[0-9]{4}"
                 maxLength={4}
                 placeholder="1234"
@@ -183,7 +206,7 @@ export default function RechargeForm() {
           {/* Submit */}
           <button
             type="submit"
-            className="w-full h-11 rounded-xl bg-[#1A3955] text-white font-semibold active:scale-[0.99] transition"
+            className="w-full h-11 rounded-xl bg-[#1A3955] text-white font-semibold active:scale-[0.99] transition cursor-pointer"
           >
             Recharge Now
           </button>
@@ -213,7 +236,7 @@ export default function RechargeForm() {
 
             <button
               onClick={() => setShowInfo(false)}
-              className="w-full h-11 rounded-xl bg-[#1A3955] text-white mt-5"
+              className="w-full h-11 rounded-xl bg-[#1A3955] text-white mt-5 cursor-pointer"
             >
               Got it
             </button>
