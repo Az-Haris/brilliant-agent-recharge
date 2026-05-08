@@ -112,6 +112,7 @@ export default function RechargeForm() {
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               placeholder="৳ Enter amount"
+              maxLength={4}
               required
               className="w-full mt-1 h-11 rounded-xl border border-gray-300 px-3 text-sm outline-none focus:border-[#FA7066]"
             />
