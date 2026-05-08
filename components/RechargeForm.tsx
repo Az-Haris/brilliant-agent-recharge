@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 const SEND_NUMBER = "01784410162";
-const WHATSAPP_NUMBER = "01784410162";
+const WHATSAPP_NUMBER = "1784410162";
 const QUICK_AMOUNTS = [20, 50, 100, 200, 500];
 
 export default function RechargeForm() {
