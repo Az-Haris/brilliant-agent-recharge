@@ -63,13 +63,10 @@ export default function RechargeHistory() {
 
   return (
     <section className="w-full px-4 mx-auto relative">
-      <div className="text-center mb-6">
+      <div className="text-center mb-2">
         <h2 className="text-2xl sm:text-3xl text-[#FA7066] font-bold">
           Latest Recharge History
         </h2>
-        <p className="text-sm text-gray-500 mt-1">
-          Recent top-ups processed by our agents
-        </p>
       </div>
 
       <div className="overflow-hidden rounded-xl border border-[#FA7066]/50 bg-white">

@@ -5,7 +5,6 @@ import { useState } from "react";
 
 const SEND_NUMBER = "01784410162";
 const WHATSAPP_NUMBER = "1784410162";
-const QUICK_AMOUNTS = [20, 50, 100, 200, 500];
 
 export default function RechargeForm() {
   const [copied, setCopied] = useState(false);
@@ -29,14 +28,12 @@ export default function RechargeForm() {
     e.preventDefault();
     setLoading(true);
 
-    const message = `
-*Brilliant Recharge Request*
+    const message = `*Brilliant Recharge Request*
 
 📱 *Number:* ${number}
 💰 *Amount:* ৳${amount}
 💳 *Method:* ${method}
-🔢 *Last 4 Digit:* ${last4Digit}
-`;
+🔢 *Last 4 Digit:* ${last4Digit}`;
 
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
@@ -81,7 +78,7 @@ export default function RechargeForm() {
 
           {/* Mobile Number */}
           <div>
-            <label className="text-sm font-medium text-gray-700">
+            <label className="ml-1 text-sm font-medium text-gray-700">
               Brilliant / Mobile Number
             </label>
 
@@ -89,8 +86,9 @@ export default function RechargeForm() {
               type="tel"
               value={number}
               onChange={(e) => setNumber(e.target.value)}
-              pattern="[0-9]{11}"
+              pattern="^(01[3-9]\d{8}|09\d{9})$"
               placeholder="09XXX / 01XXX"
+              maxLength={11}
               required
               className="w-full mt-1 h-11 rounded-xl border border-gray-300 px-3 text-sm outline-none focus:border-[#FA7066]"
             />
@@ -99,7 +97,7 @@ export default function RechargeForm() {
           {/* Amount */}
           <div>
             <div className="flex items-center justify-between">
-              <label className="text-sm font-medium text-gray-700">
+              <label className="ml-1 text-sm font-medium text-gray-700">
                 Recharge Amount
               </label>
 
@@ -107,7 +105,7 @@ export default function RechargeForm() {
             </div>
 
             <input
-              type="tel"
+              type="number"
               min={20}
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
@@ -115,31 +113,12 @@ export default function RechargeForm() {
               required
               className="w-full mt-1 h-11 rounded-xl border border-gray-300 px-3 text-sm outline-none focus:border-[#FA7066]"
             />
-
-            {/* Quick Amounts */}
-            <div className="flex gap-2 mt-2 overflow-x-auto scrollbar-hide">
-              {QUICK_AMOUNTS.map((a) => (
-                <button
-                  key={a}
-                  type="button"
-                  onClick={() => setAmount(String(a))}
-                  className={`min-w-fit px-3 py-1.5 rounded-full text-xs border transition active:scale-95 cursor-pointer
-                    ${
-                      amount === String(a)
-                        ? "bg-[#FA7066] text-white border-[#FA7066]"
-                        : "bg-gray-50 border-gray-200"
-                    }`}
-                >
-                  ৳{a}
-                </button>
-              ))}
-            </div>
           </div>
 
           {/* Send Money */}
           <div>
             <div className="flex items-center justify-between">
-              <label className="text-sm font-medium text-gray-700">
+              <label className="ml-1 text-sm font-medium text-gray-700">
                 Send Money To
               </label>
 
@@ -177,7 +156,7 @@ export default function RechargeForm() {
           {/* Method + Last 4 */}
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="text-sm font-medium text-gray-700">
+              <label className="ml-1 text-sm font-medium text-gray-700">
                 Payment Method
               </label>
 
@@ -197,7 +176,7 @@ export default function RechargeForm() {
             </div>
 
             <div>
-              <label className="text-sm font-medium text-gray-700">
+              <label className="ml-1 text-sm font-medium text-gray-700">
                 Last 4 Digit
               </label>
 
