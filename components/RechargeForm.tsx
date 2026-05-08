@@ -1,5 +1,6 @@
 "use client";
 
+import { CopyIcon, InfoIcon } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -58,7 +59,7 @@ export default function RechargeForm() {
       <section className="relative w-full px-3">
         <form
           onSubmit={onSubmit}
-          className="bg-white rounded-2xl border border-[#FA7066]/30 shadow-sm p-4 space-y-4"
+          className="bg-white rounded-2xl border border-[#FA7066]/30 shadow-sm p-4 space-y-3"
         >
           {/* Header */}
           <div className="flex items-center justify-between mb-0">
@@ -88,6 +89,7 @@ export default function RechargeForm() {
               onChange={(e) => setNumber(e.target.value)}
               pattern="^(01[3-9]\d{8}|09\d{9})$"
               placeholder="09XXX / 01XXX"
+              autoComplete="tel"
               maxLength={11}
               required
               className="w-full mt-1 h-11 rounded-xl border border-gray-300 px-3 text-sm outline-none focus:border-[#FA7066]"
@@ -131,7 +133,7 @@ export default function RechargeForm() {
               </button>
             </div>
 
-            <div className="flex gap-2 mt-1">
+            {/* <div className="mt-1 flex gap-2">
               <input
                 readOnly
                 value={SEND_NUMBER}
@@ -149,6 +151,33 @@ export default function RechargeForm() {
                   }`}
               >
                 {copied ? "Copied" : "Copy"}
+              </button>
+            </div> */}
+
+            <div className="flex gap-2 mt-1">
+              <div className="relative flex-1">
+                <input
+                  readOnly
+                  value={SEND_NUMBER}
+                  className="w-full h-11 rounded-xl border border-gray-300 px-3 pr-24 text-sm bg-gray-50"
+                />
+
+                <button
+                  type="button"
+                  onClick={copyNumber}
+                  className={`absolute right-1 top-1/2 -translate-y-1/2 h-9 px-4 rounded-lg text-sm font-medium transition cursor-pointer flex items-center gap-1
+      ${copied ? "bg-green-500 text-white" : "bg-[#1A3955] text-white"}`}
+                >
+                  <CopyIcon className="w-5" /> {copied ? "Copied" : "Copy"}
+                </button>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setShowInfo(true)}
+                className="px-4 rounded-lg text-sm font-medium cursor-pointer bg-green-500 text-white flex items-center gap-1"
+              >
+                <InfoIcon className="w-5" /> Info
               </button>
             </div>
           </div>
