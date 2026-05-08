@@ -27,12 +27,6 @@ export default function RechargeForm() {
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    await fetch("/api/recharge", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ number, amount, method, last4Digit }),
-    });
-
     const message = `
 *Brilliant Recharge Request*
 
@@ -44,7 +38,13 @@ export default function RechargeForm() {
 
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
-    await window.open(whatsappURL, "_blank");
+    window.open(whatsappURL, "_blank");
+
+    await fetch("/api/recharge", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ number, amount, method, last4Digit }),
+    });
 
     // Reset form
     setNumber("");
