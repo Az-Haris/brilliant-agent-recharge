@@ -43,10 +43,14 @@ export default function RechargeForm() {
 `;
 
     const encodedMessage = encodeURIComponent(message);
-
     const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+    await window.open(whatsappURL, "_blank");
 
-    window.open(whatsappURL, "_blank");
+    // Reset form
+    setNumber("");
+    setAmount("");
+    setMethod("");
+    setLast4Digit("");
   };
 
   return (
