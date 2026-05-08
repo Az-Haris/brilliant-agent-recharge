@@ -4,7 +4,7 @@ const HeroCarousel = () => {
   return (
     <div className="relative w-full aspect-21/9 rounded-b-xl overflow-hidden">
       <Image
-        src="/Slider_1.jpg"
+        src="/Slider_2.png"
         alt="Hero Banner"
         fill
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1200px"

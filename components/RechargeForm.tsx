@@ -179,9 +179,9 @@ export default function RechargeForm() {
                 <option value="" disabled>
                   bKash/Nagad/Rocket
                 </option>
-                <option value="bkash">bKash</option>
-                <option value="nagad">Nagad</option>
-                <option value="rocket">Rocket</option>
+                <option value="bKash">bKash</option>
+                <option value="Nagad">Nagad</option>
+                <option value="Rocket">Rocket</option>
               </select>
             </div>
 
