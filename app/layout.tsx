@@ -16,6 +16,7 @@ export const metadata: Metadata = {
   title: "Brilliant Agent Recharge",
   description:
     "Recharge your mobile balance with ease. Contact us via WhatsApp for quick and reliable service.",
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
