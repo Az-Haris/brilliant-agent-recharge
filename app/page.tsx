@@ -1,4 +1,6 @@
 import { Footer } from "@/components/Footer";
+import HeaderBalance from "@/components/HeaderBalance";
+import HeaderBalanceSkeleton from "@/components/HeaderBalanceSkeleton";
 import HeroCarousel from "@/components/HeroCarousel";
 import RechargeForm from "@/components/RechargeForm";
 import RechargeHistory from "@/components/RechargeHistory";
@@ -52,8 +54,9 @@ export default function Home() {
         }}
       />
       <main className="flex flex-1 w-full max-w-xl flex-col gap-6 items-center justify-between sm:items-start">
-        <HeroCarousel />
+        <HeaderBalanceSkeleton />
         <RechargeForm />
+        <HeroCarousel />
         <RechargeHistory />
         <Footer />
       </main>
