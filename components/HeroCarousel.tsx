@@ -4,8 +4,9 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const slides = [
-  { id: 2, src: "/Slider_2.jpeg", alt: "Offer banner 2" },
-  { id: 3, src: "/Slider_2.png", alt: "Offer banner 3" },
+  { id: 1, src: "/sliders/Slider_1.jpeg", alt: "Offer banner 1" },
+  { id: 2, src: "/sliders/Slider_2.jpeg", alt: "Offer banner 2" },
+  { id: 3, src: "/sliders/Slider_3.jpeg", alt: "Offer banner 3" },
 ];
 
 const HeroCarousel = () => {
@@ -44,7 +45,7 @@ const HeroCarousel = () => {
   };
 
   return (
-    <div className="px-3 w-full">
+    <div className="px-3 w-full mt-2">
       <div
         className="relative rounded-2xl overflow-hidden aspect-3/1 select-none"
         onTouchStart={onTouchStart}
@@ -61,7 +62,7 @@ const HeroCarousel = () => {
               src={slide.src}
               alt={slide.alt}
               fill
-              sizes="100vw"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1200px"
               className="object-cover"
               priority={i === 0}
             />
@@ -69,7 +70,7 @@ const HeroCarousel = () => {
         ))}
 
         {/* Dots */}
-        <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1.5">
+        <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1.5 bg-black/50 py-1 rounded-full max-w-20 mx-auto">
           {slides.map((_, i) => (
             <button
               key={i}
@@ -78,8 +79,8 @@ const HeroCarousel = () => {
                 resetTimer();
               }}
               aria-label={`Go to slide ${i + 1}`}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                i === current ? "w-5 bg-white" : "w-1.5 bg-white/50"
+              className={`h-1.5 rounded-full transition-all duration-300 bg-white ${
+                i === current ? "w-5" : "w-1.5"
               }`}
             />
           ))}
