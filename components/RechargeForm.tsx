@@ -91,7 +91,7 @@ export default function RechargeForm() {
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label className="ml-1 text-sm font-medium text-gray-700">
-                Brilliant / Alaap / Mobile
+                Brilliant/Alaap/Mobile
               </label>
 
               <input
