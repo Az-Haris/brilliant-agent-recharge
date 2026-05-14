@@ -2,6 +2,7 @@ import mongoose, { Schema, Document } from "mongoose";
 
 export interface IRecharge extends Document {
   number: string;
+  operator: string;
   amount: number;
   method: string;
   last4Digit: string;
@@ -12,6 +13,7 @@ export interface IRecharge extends Document {
 const RechargeSchema = new Schema<IRecharge>(
   {
     number: { type: String, required: true },
+    operator: { type: String, required: true },
     amount: { type: Number, required: true },
     method: { type: String, required: true },
     last4Digit: { type: String, required: true },
