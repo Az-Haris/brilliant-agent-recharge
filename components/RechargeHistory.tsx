@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { CheckCircle2, CircleX, Clock } from "lucide-react";
+import Image from "next/image";
 
 type Status = "Pending" | "Success" | "Rejected";
-type Row = { number: string; amount: number; status: Status };
+type Row = { number: string; operator: string; amount: number; status: Status };
 
 function StatusBadge({ status }: { status: Status }) {
   if (status === "Success") {
@@ -93,7 +94,24 @@ export default function RechargeHistory() {
                   key={i}
                   className="text-center border-t border-[#FA7066]/50"
                 >
-                  <td className="px-4 py-3 font-mono">{r.number}</td>
+                  <td className="px-4 py-3 font-mono flex items-center gap-1">
+                    <Image
+                      src={
+                        r.operator === "Brilliant"
+                          ? "/brilliant.webp"
+                          : "/Alaap.png"
+                      }
+                      alt={
+                        r.operator === "Brilliant"
+                          ? "Brilliant Logo"
+                          : "Alaap Logo"
+                      }
+                      width={20}
+                      height={20}
+                      className="rounded-xl border border-[#FA7066] shadow-sm"
+                    />
+                    {r.number}
+                  </td>
                   <td className="px-2 py-3 font-semibold">৳{r.amount}</td>
                   <td className="px-4 py-3">
                     <StatusBadge status={r.status} />

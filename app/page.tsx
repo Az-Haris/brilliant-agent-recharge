@@ -1,7 +1,9 @@
 import { Footer } from "@/components/Footer";
 import HeroCarousel from "@/components/HeroCarousel";
+import HeroCarouselSkeleton from "@/components/HeroCarouselSkeleton";
 import RechargeForm from "@/components/RechargeForm";
 import RechargeHistory from "@/components/RechargeHistory";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
@@ -52,7 +54,9 @@ export default function Home() {
         }}
       />
       <main className="flex flex-1 w-full max-w-xl flex-col gap-6 items-center justify-between sm:items-start">
-        <HeroCarousel />
+        <Suspense fallback={<HeroCarouselSkeleton />}>
+          <HeroCarousel />
+        </Suspense>
         <RechargeForm />
         <RechargeHistory />
         <Footer />

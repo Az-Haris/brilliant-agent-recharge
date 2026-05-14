@@ -13,6 +13,7 @@ export default function RechargeForm() {
   const [method, setMethod] = useState("");
   const [showInfo, setShowInfo] = useState(false);
   const [number, setNumber] = useState("");
+  const [operator, setOperator] = useState("");
   const [last4Digit, setLast4Digit] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -29,7 +30,7 @@ export default function RechargeForm() {
     e.preventDefault();
     setLoading(true);
 
-    const message = `*Brilliant Recharge Request*
+    const message = `*${operator} Recharge Request*
 
 📱 *Number:* ${number}
 💰 *Amount:* ৳${amount}
@@ -43,12 +44,13 @@ export default function RechargeForm() {
     await fetch("/api/recharge", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ number, amount, method, last4Digit }),
+      body: JSON.stringify({ number, operator, amount, method, last4Digit }),
     });
 
     setLoading(false);
     // Reset form
     setNumber("");
+    setOperator("");
     setAmount("");
     setMethod("");
     setLast4Digit("");
@@ -66,7 +68,7 @@ export default function RechargeForm() {
             <h1 className="text-2xl font-bold text-[#FA7066]">
               Agent Recharge
             </h1>
-            <div>
+            <div className="flex items-center gap-2">
               <Image
                 src="/brilliant.webp"
                 alt="Brilliant Logo"
@@ -74,26 +76,55 @@ export default function RechargeForm() {
                 height={50}
                 className="rounded-xl border border-[#FA7066] shadow-lg"
               />
+              <Image
+                src="/Alaap.png"
+                alt="Alaap Logo"
+                width={50}
+                height={50}
+                className="rounded-xl border border-[#FA7066] shadow-lg"
+              />
             </div>
           </div>
 
-          {/* Mobile Number */}
-          <div>
-            <label className="ml-1 text-sm font-medium text-gray-700">
-              Brilliant / Mobile Number
-            </label>
+          {/* Mobile Number + Operator */}
 
-            <input
-              type="tel"
-              value={number}
-              onChange={(e) => setNumber(e.target.value)}
-              pattern="^(01[3-9]\d{8}|09\d{9})$"
-              placeholder="09XXX / 01XXX"
-              autoComplete="tel"
-              maxLength={11}
-              required
-              className="w-full mt-1 h-11 rounded-xl border border-gray-300 px-3 text-sm outline-none focus:border-[#FA7066]"
-            />
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="ml-1 text-sm font-medium text-gray-700">
+                Brilliant / Alaap / Mobile
+              </label>
+
+              <input
+                type="tel"
+                value={number}
+                onChange={(e) => setNumber(e.target.value)}
+                pattern="^(01[3-9]\d{8}|09\d{9})$"
+                placeholder="09XXX / 01XXX"
+                autoComplete="tel"
+                maxLength={11}
+                required
+                className="w-full mt-1 h-11 rounded-xl border border-gray-300 px-3 text-sm outline-none focus:border-[#FA7066]"
+              />
+            </div>
+
+            <div>
+              <label className="ml-1 text-sm font-medium text-gray-700">
+                Operator
+              </label>
+
+              <select
+                value={operator}
+                onChange={(e) => setOperator(e.target.value)}
+                required
+                className="w-full mt-1 h-11 rounded-xl border border-gray-300 px-3 text-sm outline-none focus:border-[#FA7066]"
+              >
+                <option value="" disabled>
+                  Brilliant/Alaap
+                </option>
+                <option value="Brilliant">Brilliant</option>
+                <option value="Alaap">Alaap</option>
+              </select>
+            </div>
           </div>
 
           {/* Amount */}
@@ -133,27 +164,6 @@ export default function RechargeForm() {
                 How?
               </button>
             </div>
-
-            {/* <div className="mt-1 flex gap-2">
-              <input
-                readOnly
-                value={SEND_NUMBER}
-                className="flex-1 h-11 rounded-xl border border-gray-300 px-3 text-sm bg-gray-50"
-              />
-
-              <button
-                type="button"
-                onClick={copyNumber}
-                className={`px-4 rounded-xl text-sm font-medium transition cursor-pointer
-                  ${
-                    copied
-                      ? "bg-green-500 text-white"
-                      : "bg-[#1A3955] text-white"
-                  }`}
-              >
-                {copied ? "Copied" : "Copy"}
-              </button>
-            </div> */}
 
             <div className="flex gap-2 mt-1">
               <div className="relative flex-1">

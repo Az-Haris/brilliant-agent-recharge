@@ -6,14 +6,15 @@ export async function POST(req: NextRequest) {
   try {
     await connectDB();
     const body = await req.json();
-    const { number, amount, method, last4Digit } = body;
+    const { number, operator, amount, method, last4Digit } = body;
 
-    if (!number || !amount || !method || !last4Digit) {
+    if (!number || !operator || !amount || !method || !last4Digit) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
 
     const recharge = await Recharge.create({
       number,
+      operator,
       amount,
       method,
       last4Digit,

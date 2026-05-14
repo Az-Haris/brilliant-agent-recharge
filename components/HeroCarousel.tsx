@@ -70,7 +70,7 @@ const HeroCarousel = () => {
         ))}
 
         {/* Dots */}
-        <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1.5 bg-black/50 py-1 rounded-full max-w-20 mx-auto">
+        <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1.5 bg-black/30 py-1 rounded-full max-w-20 mx-auto">
           {slides.map((_, i) => (
             <button
               key={i}
@@ -79,7 +79,7 @@ const HeroCarousel = () => {
                 resetTimer();
               }}
               aria-label={`Go to slide ${i + 1}`}
-              className={`h-1.5 rounded-full transition-all duration-300 bg-white ${
+              className={`h-1.5 rounded-full transition-all duration-300 bg-white/50 ${
                 i === current ? "w-5" : "w-1.5"
               }`}
             />
