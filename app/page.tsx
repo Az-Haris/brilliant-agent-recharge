@@ -1,11 +1,14 @@
+"use client";
 import { Footer } from "@/components/Footer";
 import HeroCarousel from "@/components/HeroCarousel";
 import HeroCarouselSkeleton from "@/components/HeroCarouselSkeleton";
 import RechargeForm from "@/components/RechargeForm";
 import RechargeHistory from "@/components/RechargeHistory";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 
 export default function Home() {
+  const [refreshKey, setRefreshKey] = useState(0);
+
   return (
     <div className="min-h-screen w-full relative flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans">
       <div
@@ -57,8 +60,8 @@ export default function Home() {
         <Suspense fallback={<HeroCarouselSkeleton />}>
           <HeroCarousel />
         </Suspense>
-        <RechargeForm />
-        <RechargeHistory />
+        <RechargeForm onSuccess={() => setRefreshKey((k) => k + 1)} />
+        <RechargeHistory refreshKey={refreshKey} />
         <Footer />
       </main>
     </div>

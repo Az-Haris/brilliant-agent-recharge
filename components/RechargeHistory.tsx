@@ -49,18 +49,28 @@ function SkeletonRows() {
   );
 }
 
-export default function RechargeHistory() {
+export default function RechargeHistory({
+  refreshKey,
+}: {
+  refreshKey: number;
+}) {
   const [rows, setRows] = useState<Row[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/recharge")
-      .then((r) => r.json())
-      .then((data) => {
+    const fetchHistory = async () => {
+      setLoading(true);
+      try {
+        const r = await fetch("/api/recharge");
+        const data = await r.json();
         setRows(data.records ?? []);
-      })
-      .finally(() => setLoading(false));
-  }, []);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchHistory();
+  }, [refreshKey]);
 
   return (
     <section className="w-full px-4 mx-auto relative">

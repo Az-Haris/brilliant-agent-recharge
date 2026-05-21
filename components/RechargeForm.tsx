@@ -7,7 +7,11 @@ import { useState } from "react";
 const SEND_NUMBER = "01784410162";
 const WHATSAPP_NUMBER = "1784410162";
 
-export default function RechargeForm() {
+export default function RechargeForm({
+  onSuccess,
+}: {
+  onSuccess?: () => void;
+}) {
   const [copied, setCopied] = useState(false);
   const [amount, setAmount] = useState("");
   const [method, setMethod] = useState("");
@@ -30,22 +34,24 @@ export default function RechargeForm() {
     e.preventDefault();
     setLoading(true);
 
-    const message = `*${operator} Recharge Request*
+    const message = `*${operator}* Recharge Request
 
-📱 *Number:* ${number}
-💰 *Amount:* ৳${amount}
-💳 *Method:* ${method}
-🔢 *Last 4 Digit:* ${last4Digit}`;
+*Number:* ${number}
+*Amount:* ৳${amount}
+*Method:* ${method}
+*Last 4 Digit:* ${last4Digit}`;
 
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
     window.open(whatsappURL, "_blank");
 
-    await fetch("/api/recharge", {
+    const res = await fetch("/api/recharge", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ number, operator, amount, method, last4Digit }),
     });
+
+    if (res.ok) onSuccess?.();
 
     setLoading(false);
     // Reset form
@@ -138,7 +144,7 @@ export default function RechargeForm() {
             </div>
 
             <input
-              type="number"
+              type="tel"
               min={20}
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
