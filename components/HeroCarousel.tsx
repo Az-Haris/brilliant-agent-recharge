@@ -7,6 +7,7 @@ const slides = [
   { id: 1, src: "/sliders/Slider_1.jpeg", alt: "Offer banner 1" },
   { id: 2, src: "/sliders/Slider_2.jpeg", alt: "Offer banner 2" },
   { id: 3, src: "/sliders/Slider_3.jpeg", alt: "Offer banner 3" },
+  { id: 4, src: "/sliders/Slider_4.jpeg", alt: "Offer banner 4" },
 ];
 
 const HeroCarousel = () => {
