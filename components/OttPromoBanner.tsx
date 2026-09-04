@@ -15,7 +15,7 @@ const OttPromoBanner = () => {
   const [banners, setBanners] = useState<OttBanner[]>([]);
 
   useEffect(() => {
-    fetch("/api/settings/ott-banners")
+    fetch("https://brilliant-agent-admin.netlify.app/api/settings/ott-banners")
       .then((r) => r.json())
       .then((data) => setBanners(data.banners ?? []))
       .catch((err) => console.error("Failed to load OTT banners:", err));

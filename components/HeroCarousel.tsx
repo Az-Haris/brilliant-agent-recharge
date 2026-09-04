@@ -16,7 +16,7 @@ const HeroCarousel = () => {
   const startX = useRef<number | null>(null);
 
   useEffect(() => {
-    fetch("/api/settings/hero-slides")
+    fetch("https://brilliant-agent-admin.netlify.app/api/settings/hero-slides")
       .then((r) => r.json())
       .then((data) => setSlides(data.slides ?? []))
       .catch((err) => console.error("Failed to load hero slides:", err));
