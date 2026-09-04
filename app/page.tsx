@@ -2,6 +2,7 @@
 import { Footer } from "@/components/Footer";
 import HeroCarousel from "@/components/HeroCarousel";
 import HeroCarouselSkeleton from "@/components/HeroCarouselSkeleton";
+import OttPromoBanner from "@/components/OttPromoBanner";
 import RechargeForm from "@/components/RechargeForm";
 import RechargeHistory from "@/components/RechargeHistory";
 import { Suspense, useState } from "react";
@@ -62,6 +63,7 @@ export default function Home() {
         </Suspense>
         <RechargeForm onSuccess={() => setRefreshKey((k) => k + 1)} />
         <RechargeHistory refreshKey={refreshKey} />
+        <OttPromoBanner />
         <Footer />
       </main>
     </div>
